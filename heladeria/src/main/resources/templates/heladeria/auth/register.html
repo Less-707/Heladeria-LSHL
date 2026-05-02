@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heladería | Registro</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+  <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+  <style>
+    .register-page { background: linear-gradient(135deg, #f8e1f4 0%, #ffe4b5 50%, #b5e8f8 100%); }
+    .login-logo a { color: #e05cad; font-weight: 700; font-size: 2rem; }
+    .card { border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.10); }
+    .btn-primary { background: #e05cad; border-color: #e05cad; }
+    .btn-primary:hover { background: #c44b96; border-color: #c44b96; }
+  </style>
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="login-logo">
+    <a>🍦 Heladería</a>
+  </div>
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">Crear nueva cuenta</p>
+      <div th:if="${param.error}" class="alert alert-danger text-center">El correo ya está registrado.</div>
+      <form th:action="@{/register}" th:object="${usuario}" method="post">
+        <div class="input-group mb-3">
+          <input type="text" th:field="*{nombreCompleto}" class="form-control" placeholder="Nombre completo">
+          <div class="input-group-append"><div class="input-group-text"><i class="fas fa-user"></i></div></div>
+          <div th:if="${#fields.hasErrors('nombreCompleto')}" class="invalid-feedback d-block" th:errors="*{nombreCompleto}"></div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="email" th:field="*{email}" class="form-control" placeholder="Correo electrónico">
+          <div class="input-group-append"><div class="input-group-text"><i class="fas fa-envelope"></i></div></div>
+          <div th:if="${#fields.hasErrors('email')}" class="invalid-feedback d-block" th:errors="*{email}"></div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" th:field="*{password}" class="form-control" placeholder="Contraseña">
+          <div class="input-group-append"><div class="input-group-text"><i class="fas fa-lock"></i></div></div>
+          <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback d-block" th:errors="*{password}"></div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <p class="mb-0"><a th:href="@{/login}" style="color:#e05cad;">Ya tengo cuenta</a></p>
+          </div>
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/dist/js/adminlte.min.js}"></script>
+</body>
+</html>

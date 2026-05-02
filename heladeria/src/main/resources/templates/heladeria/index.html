@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heladería | Inicio</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+  <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+  <style>
+    body, .content-wrapper { background: #fdf6fb !important; }
+    .main-header { background: #fff !important; border-bottom: 1px solid #f4d0ea; }
+    .main-footer { background: #fff !important; color: #718096; border-top: 1px solid #f4d0ea; }
+    .card { border: none !important; border-radius: 12px; box-shadow: 0 2px 10px rgba(224,92,173,0.07); }
+    .card-header { background: #fff !important; border-bottom: 1px solid #f4d0ea !important; border-radius: 12px 12px 0 0 !important; padding: 16px 24px !important; }
+    .card-title { color: #2d3748; font-weight: 600; font-size: 1rem; margin: 0; }
+    .content-header h1 { color: #2d3748; font-size: 1.4rem; }
+    .stat-card { border-radius: 12px; padding: 18px 22px; display: flex; align-items: center; gap: 16px; box-shadow: 0 2px 10px rgba(224,92,173,0.07); height: 100%; }
+    .stat-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .stat-number { font-size: 1.9rem; font-weight: 700; line-height: 1; margin-bottom: 2px; }
+    .stat-label { font-size: 0.8rem; opacity: 0.7; margin: 0; }
+    .stat-link { margin-top: 5px; font-size: 0.78rem; text-decoration: none; opacity: 0.6; display: inline-block; }
+    .stat-link:hover { opacity: 1; }
+    .c-pink   { background: #fdf0f9; color: #7b2d60; } .c-pink   .stat-icon { background: #f9c6e8; color: #c44b96; } .c-pink   .stat-link { color: #c44b96; }
+    .c-yellow { background: #fff9ec; color: #7a5300; } .c-yellow .stat-icon { background: #fff0b5; color: #d4a017; } .c-yellow .stat-link { color: #d4a017; }
+    .c-blue   { background: #eef4fb; color: #2c5282; } .c-blue   .stat-icon { background: #bee3f8; color: #2b6cb0; } .c-blue   .stat-link { color: #2b6cb0; }
+    .c-green  { background: #f0faf4; color: #276749; } .c-green  .stat-icon { background: #c6f6d5; color: #276749; } .c-green  .stat-link { color: #276749; }
+    .c-red    { background: #fff5f5; color: #742a2a; } .c-red    .stat-icon { background: #fed7d7; color: #c53030; } .c-red    .stat-link { color: #c53030; }
+    .c-teal   { background: #e6fffa; color: #234e52; } .c-teal   .stat-icon { background: #b2f5ea; color: #2c7a7b; } .c-teal   .stat-link { color: #2c7a7b; }
+    .tipo-bar { height: 6px; border-radius: 3px; background: #f9c6e8; margin-top: 4px; }
+    .breadcrumb { background: transparent; padding: 0; }
+    .breadcrumb-item a { color: #e05cad; }
+    .main-sidebar { background: #3d1a2e !important; }
+    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active { background: #e05cad; color: #fff; }
+    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link:hover { background: rgba(224,92,173,0.15); }
+    .brand-link { border-bottom: 1px solid rgba(224,92,173,0.2) !important; }
+  </style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a></li>
+      <li class="nav-item d-none d-sm-inline-block"><a th:href="@{/heladeria/index}" class="nav-link">Inicio</a></li>
+    </ul>
+  </nav>
+
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a th:href="@{/heladeria/index}" class="brand-link">
+      <img th:src="@{/dist/img/AdminLTELogo.png}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity:.8">
+      <span class="brand-text font-weight-light">🍦 Heladería</span>
+    </a>
+    <div class="sidebar">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image"><img th:src="@{/dist/img/user2-160x160.jpg}" class="img-circle elevation-2" alt="User"></div>
+        <div class="info"><a href="#" class="d-block" th:text="${session.usuarioLogueado?.nombreCompleto ?: 'Usuario'}">Usuario</a></div>
+      </div>
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item"><a th:href="@{/heladeria/listado_sabores}" class="nav-link"><i class="nav-icon fas fa-ice-cream"></i><p>Sabores</p></a></li>
+          <li class="nav-item"><a th:href="@{/pedidos}" class="nav-link"><i class="nav-icon fas fa-shopping-cart"></i><p>Pedidos</p></a></li>
+          <li class="nav-item"><a th:href="@{/produccion}" class="nav-link"><i class="nav-icon fas fa-industry"></i><p>Producción</p></a></li>
+          <li class="nav-item"><a th:href="@{/pedidos/estadistica}" class="nav-link"><i class="nav-icon fas fa-chart-pie"></i><p>Estadísticas</p></a></li>
+          <li class="nav-header"></li>
+          <li class="nav-item"><a th:href="@{/logout}" class="nav-link"><i class="nav-icon far fa-circle text-danger"></i><p>Salir</p></a></li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"><h1 class="m-0">Dashboard</h1></div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right"><li class="breadcrumb-item active">Inicio</li></ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="content">
+      <div class="container-fluid">
+
+        <!-- Fila 1: resumen general -->
+        <div class="row mb-3">
+          <div class="col-lg-4 col-sm-6 mb-3">
+            <div class="stat-card c-pink">
+              <div class="stat-icon"><i class="fas fa-ice-cream"></i></div>
+              <div>
+                <div class="stat-number" th:text="${totalSabores}">0</div>
+                <p class="stat-label">Sabores Registrados</p>
+                <a th:href="@{/heladeria/listado_sabores}" class="stat-link">Ver sabores <i class="fas fa-arrow-right fa-xs"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-3">
+            <div class="stat-card c-teal">
+              <div class="stat-icon"><i class="fas fa-shopping-cart"></i></div>
+              <div>
+                <div class="stat-number" th:text="${totalPedidos}">0</div>
+                <p class="stat-label">Pedidos Totales</p>
+                <a th:href="@{/pedidos}" class="stat-link">Ver pedidos <i class="fas fa-arrow-right fa-xs"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-3">
+            <div class="stat-card c-yellow">
+              <div class="stat-icon"><i class="fas fa-industry"></i></div>
+              <div>
+                <div class="stat-number" th:text="${totalProducciones}">0</div>
+                <p class="stat-label">Lotes de Producción</p>
+                <a th:href="@{/produccion}" class="stat-link">Ver producción <i class="fas fa-arrow-right fa-xs"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fila 2: estado de pedidos -->
+        <div class="row mb-4">
+          <div class="col-lg-4 col-sm-6 mb-3">
+            <div class="stat-card c-blue">
+              <div class="stat-icon"><i class="fas fa-clock"></i></div>
+              <div>
+                <div class="stat-number" th:text="${pedidosPendientes}">0</div>
+                <p class="stat-label">Pedidos Pendientes</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-3">
+            <div class="stat-card c-green">
+              <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+              <div>
+                <div class="stat-number" th:text="${pedidosEntregados}">0</div>
+                <p class="stat-label">Pedidos Entregados</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-3">
+            <div class="stat-card c-red">
+              <div class="stat-icon"><i class="fas fa-times-circle"></i></div>
+              <div>
+                <div class="stat-number" th:text="${pedidosCancelados}">0</div>
+                <p class="stat-label">Pedidos Cancelados</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fila 3: sabores por tipo -->
+        <div class="card" th:if="${tipoSabores != null and !tipoSabores.isEmpty()}">
+          <div class="card-header">
+            <h3 class="card-title"><i class="fas fa-ice-cream mr-2" style="color:#e05cad;"></i>Sabores por Tipo</h3>
+            <div class="card-tools">
+              <a th:href="@{/pedidos/estadistica}" class="btn btn-sm" style="background:#fdf0f9;color:#c44b96;border:none;border-radius:6px;">
+                <i class="fas fa-chart-pie"></i> Ver estadísticas completas
+              </a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <th:block th:each="entry : ${tipoSabores}">
+                <div class="col-md-3 col-sm-6 mb-3">
+                  <div style="background:#fdf6fb; border-radius:8px; padding:14px 18px;">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span style="font-weight:600; color:#2d3748; font-size:0.9rem;" th:text="${entry.key}">Tipo</span>
+                      <span style="font-weight:700; color:#e05cad; font-size:1.1rem;" th:text="${entry.value}">0</span>
+                    </div>
+                    <div class="tipo-bar"
+                         th:style="'width:' + (${totalSabores} > 0 ? (${entry.value} * 100 / ${totalSabores}) : 0) + '%'">
+                    </div>
+                  </div>
+                </div>
+              </th:block>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2026 <a href="#" style="color:#e05cad;">Heladería</a>.</strong> Todos los derechos reservados.
+    <div class="float-right d-none d-sm-inline-block"><b>Versión</b> 1.0.0</div>
+  </footer>
+  <aside class="control-sidebar control-sidebar-dark"></aside>
+</div>
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/dist/js/adminlte.js}"></script>
+</body>
+</html>

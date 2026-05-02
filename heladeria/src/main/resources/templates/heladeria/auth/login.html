@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heladería | Login</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+  <link rel="stylesheet" th:href="@{/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+  <style>
+    .login-page { background: linear-gradient(135deg, #ecdaeb 0%, #ecdaeb 50%, #ecdaeb 100%); }
+    .login-logo a { color: #e05cad; font-weight: 700; font-size: 2rem; }
+    .login-logo a:hover { text-decoration: none; }
+    .card { border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.10); }
+    .btn-primary { background: #e05cad; border-color: #e05cad; }
+    .btn-primary:hover { background: #c44b96; border-color: #c44b96; }
+    .login-box-msg { color: #718096; }
+  </style>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a>🍦 Heladería</a>
+  </div>
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Inicie sesión para continuar</p>
+      <div th:if="${error}" class="alert alert-danger text-center" role="alert" th:text="${error}"></div>
+      <form th:action="@{/login}" method="post">
+        <div class="input-group mb-3">
+          <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required>
+          <div class="input-group-append">
+            <div class="input-group-text"><span class="fas fa-envelope"></span></div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+          <div class="input-group-append">
+            <div class="input-group-text"><span class="fas fa-lock"></span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">Recordarme</label>
+            </div>
+          </div>
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+          </div>
+        </div>
+      </form>
+      <p class="mb-1">
+        <a th:href="@{/forgot-password}" class="float-right" style="color:#e05cad;">Olvidé mi contraseña</a>
+      </p>
+      <p class="mb-0">
+        <a th:href="@{/register}" class="text-center" style="color:#e05cad;">Registrarme</a>
+      </p>
+    </div>
+  </div>
+</div>
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/dist/js/adminlte.min.js}"></script>
+</body>
+</html>
